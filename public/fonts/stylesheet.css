@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Euclid Flex';
+    src: url('EuclidFlex-LightItalic.woff2') format('woff2'),
+        url('EuclidFlex-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Euclid Flex';
+    src: url('EuclidFlex-Semibold.woff2') format('woff2'),
+        url('EuclidFlex-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Monosten A';
+    src: url('Monosten-A.woff2') format('woff2'),
+        url('Monosten-A.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

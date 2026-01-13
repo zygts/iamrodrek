@@ -1,0 +1,6 @@
+[build]
+  publish = "dist"
+
+[[edge_functions]]
+  function = "lang-redirect"
+  path = "/"
