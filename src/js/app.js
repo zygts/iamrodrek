@@ -296,24 +296,6 @@ if (isTouchDevice) {
   });
 }
 
-// Selector de idioma
-document.querySelectorAll('[data-lang]').forEach(el => {
-  el.addEventListener('click', e => {
-    e.preventDefault();
-    const lang = el.getAttribute('data-lang');
-
-    // Guardamos preferencia durante 1 año
-    document.cookie = `lang_pref=${lang}; path=/; max-age=${60 * 60 * 24 * 365}`;
-
-    // Redirigimos al idioma elegido
-    if (lang === 'en') {
-      window.location.href = '/en/';
-    } else {
-      window.location.href = '/';
-    }
-  });
-});
-
 // Convierte el submit en "lead real" para Google Ads
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form[name="contacto"]');
