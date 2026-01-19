@@ -241,6 +241,178 @@ a:hover {
   transition: all 0.3s ease;
 }
 
+.contact-section {
+    position: fixed;
+    top: 100vh;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    padding: 3.5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7.5vw;
+    background-color: #0059f4;
+    z-index: 10000;
+    transition: cubic-bezier(0.83, 0, 0.17, 1) all 0.75s;
+
+    h2, a {
+        font-family: "monosten A", monospace;
+        color: #F6F6F4;
+        text-transform: uppercase;
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+
+    p {
+        text-align: justify;
+        font-family: Euclid Flex, system-ui, sans-serif;
+        font-size: 1.95vw;
+        font-weight: 600;
+        color: #F6F6F4;
+    }
+
+    a {
+        margin-top: 3rem;
+    }
+
+    form {
+        position: relative;
+        display: grid;
+        margin-top: 1rem;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: min-content;
+        gap: 1rem;
+        }
+
+        @media (max-width: 767){
+            form{
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Campo */
+        .form-row{
+        display: grid;
+        }
+
+        .form-row label{
+        }
+
+        /* Inputs */
+
+        label {
+            display: none;
+        }
+
+        input {
+        }
+
+        input,
+        textarea{
+            background-color: #F6F6F4;
+            border: none;
+            padding: 1.5rem 1rem;
+            font-family: 'monosten A', monospace;
+            font-size: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            transition: all 0.25s ease;
+        }
+
+        textarea{
+            resize: none;
+            max-height: 160px;
+            height: 20vh;
+        }
+
+        input::placeholder,
+        textarea::placeholder{
+        }
+
+        input:hover,
+        textarea:hover{
+        }
+
+        input:focus,
+        textarea:focus,
+        input:focus-visible,
+        textarea:focus-visible {
+            background-color: white;
+            outline: none;
+            outline: 2px solid #0059f4;
+            box-shadow: 0 0 0 4px #fff;
+        }
+
+        button{
+            appearance: none;
+            border: 0;
+            outline: 0;
+            background-color: #f6f6f4;
+            color: #0059f4;
+            font-family: Euclid Flex, system-ui, sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        button:hover{
+            background-color: white;
+        }
+
+        button:active{
+        }
+
+        /* Mensaje inline de éxito */
+        .form-success{
+        margin-top: 1.5rem;
+        padding: 1.5rem 1.75rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,.22);
+        background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
+        color: var(--contact-text);
+        box-shadow: var(--contact-shadow-2);
+        animation: fadeUp .35s ease both;
+        }
+
+        .form-success h3{
+        margin: 0 0 .25rem 0;
+        letter-spacing: -0.02em;
+        }
+
+        .form-success p{
+        margin: 0;
+        color: var(--contact-muted);
+        }
+}
+
+body.contact-open, html.contact-open {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.contact-open .wrapper {
+    pointer-events: none;
+    user-select: none;
+    transform: translateY(-50vh);
+    filter: saturate(0);
+    opacity: 0.25;
+}
+
+.contact-open .contact-section {
+    transform: translateY(-50vh);
+}
+
+.close-contact {
+    position: absolute;
+    top: 10px;
+    right: 3.2vw;
+    color: white;
+    cursor: pointer;
+}
+
 @media (max-width: 1336px) {
     h2, h3, ul {
         font-size: 14px;
@@ -325,6 +497,22 @@ a:hover {
         width: 95vw;
         height: 80vh;
     }
+    .contact-section {
+        grid-template-columns: 1fr;
+        height: 66.66vh;
+        padding: 4.5vw 4.5vw 0;
+
+        p {
+            font-size: 3.8vw;
+            line-height: 1.175;
+        }
+    }
+    .contact-open .wrapper {
+        transform: translateY(-66.66vh);
+    }
+    .contact-open .contact-section {
+        transform: translateY(-66.66vh);
+    }
 }
 
 @media (max-width: 767px) {
@@ -359,5 +547,24 @@ a:hover {
     h2, h3, ul {
         font-size: 13px;
         line-height: 1.3;
+    }
+    .contact-section {
+        grid-template-columns: 1fr;
+        height: 85vh;
+        gap: 2vw;
+        
+        p {
+            font-size: 5.5vw;
+        }
+
+        button {
+            height: 66px;
+        }
+    }
+    .contact-open .wrapper {
+        transform: translateY(-85vh);
+    }
+    .contact-open .contact-section {
+        transform: translateY(-85vh);
     }
 }

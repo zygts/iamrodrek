@@ -72,7 +72,7 @@
             <div class="info-wrapper">
             <div class="info">
                 <h1>Diseñador y Desarrollador Web Freelance</h1>
-                <a href="mailto:hi@iamrodrek.com" onclick="gtag_report_conversion();" aria-label="Contactar por email" target="_blank" rel="noopener noreferrer">Contáctame</a>
+                <a class="open-contact" target="_blank" rel="noopener noreferrer">Contáctame</a>
             </div>
             </div>
         </header>
@@ -197,12 +197,64 @@
                 <p class="bio">
                         Hola, soy Rodrigo Núñez y vivo en A Coruña. Llevo más de doce años trabajando como diseñador gráfico, diseñador web y desarrollador front-end, tanto como freelance como dentro de una agencia de marketing digital. He participado en todo tipo de proyectos para una amplia variedad de clientes, interviniendo en todas las fases del proceso. He dirigido el departamento de diseño, gestionando desde campañas de marketing online hasta el desarrollo de sitios web para clientes nacionales e internacionales. Me definen la flexibilidad, el espíritu colaborativo y una mente curiosa. Trabajo habitualmente con las tecnologías más actuales y sigo formándome cada día. Creo que el contenido está por encima de la forma, y que el diseño es, ante todo, una herramienta de comunicación. Me gusta escuchar, cuidar los detalles y entregar el trabajo a tiempo.
                 </p>
-                <a href="mailto:hi@iamrodrek.com" onclick="gtag_report_conversion();" aria-label="Contactar por email" target="_blank" rel="noopener noreferrer">Contáctame</a>
+                <a class="open-contact" target="_blank" rel="noopener noreferrer">Contáctame</a>
                 <div id="canvasContainer" data-grid="100" data-mouse="0.13" data-strength="0.1">
                 </div>
             </aside>
         </div>
     </div>
+
+    <div class="contact-section">
+        <svg class="close-contact" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="20" cy="20" r="15.5" stroke="currentColor" stroke-width="1"/>
+                <path d="M13.5 13.5L26.5 26.5M26.5 13.5L13.5 26.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+
+
+        <div>
+                <h2>¿Hablamos?</h2>
+                <p>Si tienes un proyecto en mente o simplemente quieres saludar, no dudes en ponerte en contacto conmigo. Estoy siempre abierto a nuevos proyectos y colaboraciones.</p>
+        </div>
+        <div>
+                <form name="contacto"
+                        method="POST"
+                        data-netlify="true"
+                        data-netlify-honeypot="bot-field"
+                        netlify
+                        id="contactForm">
+                <!-- Necesario para que Netlify detecte el formulario -->
+                <input type="hidden" name="form-name" value="contacto" />
+
+                <!-- Honeypot anti-spam (oculto) -->
+                <p style="display:none;">
+                <label>No rellenar: <input name="bot-field" /></label>
+                </p>
+
+                <div class="form-row">
+                <label for="nombre">Tu nombre</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" />
+                </div>
+
+                <div class="form-row">
+                <label for="email">Tu email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required  placeholder="Tu email"/>
+                </div>
+
+                <div class="form-row">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Tu mensaje"></textarea>
+                </div>
+
+                <button type="submit" id="contactSubmit">Enviar</button>
+                </form>
+                <a onclick="gtag_report_conversion()" href="mailto:hi@iamrodrek.com" target="_blank" rel="noopener noreferrer">hi@iamrodrek.com</a>
+                <!-- Mensaje inline de éxito -->
+                        <div class="form-success" id="formSuccess" hidden>
+                        <h3>Gracias</h3>
+                        <p>He recibido tu mensaje. Te responderé lo antes posible.</p>
+                        </div>
+        </div>
+        </div>
 
     <script type="module" src="js/app.js"></script>
     <script src="js/arrow.js"></script>
