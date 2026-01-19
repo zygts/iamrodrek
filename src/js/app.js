@@ -326,3 +326,22 @@ document.querySelectorAll('[data-lang]').forEach(el => {
       }
     });
   });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
+  const openButtons = document.querySelectorAll(".open-contact");
+  const closeButtons = document.querySelectorAll(".close-contact");
+
+  openButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      body.classList.add("contact-open");
+    });
+  });
+
+  closeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      body.classList.remove("contact-open");
+    });
+  });
+});
