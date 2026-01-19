@@ -562,3 +562,5 @@ body.contact-open, html.contact-open {
         transform: translateY(-85vh);
     }
 }
+
+.lang-switch{font-family:Monosten A,monospace;font-size:15px;position:fixed;top:10px;right:3.5vw}
