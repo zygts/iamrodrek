@@ -345,3 +345,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Enviar formulario
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        body: new URLSearchParams(formData).toString(),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
+
+      if (res.ok) {
+        // Oculta formulario y muestra gracias
+        form.style.display = 'none';
+        success.hidden = false;
+
+        // Dispara conversión REAL
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+      } else {
+        alert('Hubo un problema al enviar el mensaje. Inténtalo de nuevo.');
+      }
+    } catch (err) {
+      alert('Error de conexión. Inténtalo de nuevo.');
+    }
+  });
+});
