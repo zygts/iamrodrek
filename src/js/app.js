@@ -296,20 +296,72 @@ if (isTouchDevice) {
   });
 }
 
-// Selector de idioma
-document.querySelectorAll('[data-lang]').forEach(el => {
-  el.addEventListener('click', e => {
+// Convierte el submit en "lead real" para Google Ads
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form[name="contacto"]');
+    if (!form) return;
+
+    form.addEventListener('submit', () => {
+      // Dispara conversión sin redirigir
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion();
+      }
+    });
+  });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
+  const openButtons = document.querySelectorAll(".open-contact");
+  const closeButtons = document.querySelectorAll(".close-contact");
+
+  openButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      body.classList.add("contact-open");
+    });
+  });
+
+  closeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      body.classList.remove("contact-open");
+    });
+  });
+});
+
+// Enviar formulario
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const lang = el.getAttribute('data-lang');
 
-    // Guardamos preferencia durante 1 año
-    document.cookie = `lang_pref=${lang}; path=/; max-age=${60 * 60 * 24 * 365}`;
+    const formData = new FormData(form);
 
-    // Redirigimos al idioma elegido
-    if (lang === 'en') {
-      window.location.href = '/en/';
-    } else {
-      window.location.href = '/';
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        body: new URLSearchParams(formData).toString(),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
+
+      if (res.ok) {
+        // Oculta formulario y muestra gracias
+        form.style.display = 'none';
+        success.hidden = false;
+
+        // Dispara conversión REAL
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
+      } else {
+        alert('Hubo un problema al enviar el mensaje. Inténtalo de nuevo.');
+      }
+    } catch (err) {
+      alert('Error de conexión. Inténtalo de nuevo.');
     }
   });
 });
