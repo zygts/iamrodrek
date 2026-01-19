@@ -273,7 +273,8 @@
                         data-netlify="true"
                         data-netlify-honeypot="bot-field"
                         netlify
-                        id="contactForm">
+                        id="contactForm"
+                        onsubmit="gtag('event','form_submit',{send_to:'AW-1015571027'});">
                 <!-- Necesario para que Netlify detecte el formulario -->
                 <input type="hidden" name="form-name" value="contacto" />
 
@@ -299,7 +300,7 @@
 
                 <button type="submit" id="contactSubmit">Enviar</button>
                 </form>
-                <a onclick="gtag_report_conversion()" href="mailto:hi@iamrodrek.com" target="_blank" rel="noopener noreferrer">hi@iamrodrek.com</a>
+                <a href="mailto:hi@iamrodrek.com" target="_blank" rel="noopener noreferrer">hi@iamrodrek.com</a>
                 <!-- Mensaje inline de éxito -->
                         <div class="form-success" id="formSuccess" hidden>
                         <h3>¡Gracias!</h3>
