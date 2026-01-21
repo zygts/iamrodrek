@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Enviar formulario
+// Enviar formulario + conversión Google Ads (solo si el envío fue OK)
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
@@ -359,21 +359,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const formData = new FormData(form);
 
+    // Asegura que Netlify identifica el formulario siempre
+    if (!formData.get('form-name')) {
+      formData.append('form-name', 'contacto');
+    }
+
     try {
       const res = await fetch('/', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString(),
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       });
 
       if (res.ok) {
-        // Oculta formulario y muestra gracias
         form.style.display = 'none';
-        success.hidden = false;
+        if (success) success.hidden = false;
 
-        // Dispara conversión REAL
-        if (typeof gtag_report_conversion === 'function') {
-          gtag_report_conversion();
+        // Conversión REAL: envío de formulario
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-1015571027/fTizCI_M2-kbENPEoeQD',
+            'transport_type': 'beacon'
+          });
         }
       } else {
         alert('Hubo un problema al enviar el mensaje. Inténtalo de nuevo.');
