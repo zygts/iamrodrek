@@ -314,19 +314,6 @@ document.querySelectorAll('[data-lang]').forEach(el => {
   });
 });
 
-// Convierte el submit en "lead real" para Google Ads
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form[name="contacto"]');
-    if (!form) return;
-
-    form.addEventListener('submit', () => {
-      // Dispara conversión sin redirigir
-      if (typeof gtag_report_conversion === 'function') {
-        gtag_report_conversion();
-      }
-    });
-  });
-
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
@@ -358,30 +345,30 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     const formData = new FormData(form);
-
-    // Asegura que Netlify identifica el formulario siempre
-    if (!formData.get('form-name')) {
-      formData.append('form-name', 'contacto');
-    }
+    if (!formData.get('form-name')) formData.append('form-name', 'contacto');
 
     try {
-      const res = await fetch('/', {
+      const action = form.getAttribute('action') || window.location.pathname;
+
+      const res = await fetch(action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString(),
       });
 
-      if (res.ok) {
-        form.style.display = 'none';
-        if (success) success.hidden = false;
 
-        // Conversión REAL: envío de formulario
+      if (res.ok) {
+        // 1) conversión primero
         if (typeof gtag === 'function') {
           gtag('event', 'conversion', {
-            'send_to': 'AW-1015571027/fTizCI_M2-kbENPEoeQD',
-            'transport_type': 'beacon'
+            send_to: 'AW-1015571027/fTizCI_M2-kbENPEoeQD',
+            transport_type: 'beacon'
           });
         }
+
+        // 2) UI después
+        form.style.display = 'none';
+        if (success) success.hidden = false;
       } else {
         alert('Hubo un problema al enviar el mensaje. Inténtalo de nuevo.');
       }
